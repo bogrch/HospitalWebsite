@@ -1,0 +1,24 @@
+﻿@model Lab1_IStaTP.ViewModels.LoginViewModel
+
+<h2>Sign in hospital</h2>
+<form method="post" asp-controller="Account" asp-action="Login"
+      asp-route-returnUrl="@Model.ReturnUrl">
+    <div asp-validation-summary="ModelOnly"></div>
+    <div>
+        <label asp-for="Email" style="font-size: large"></label><br />
+        <input asp-for="Email" />
+        <span asp-validation-for="Email"></span>
+    </div>
+    <div>
+        <label asp-for="Password" style="font-size: large">Password</label><br />
+        <input asp-for="Password" />
+        <span asp-validation-for="Password"></span>
+    </div>
+    <div>
+        <label asp-for="RememberMe" style="font-size: large">RememberMe</label><br />
+        <input asp-for="RememberMe" />
+    </div>
+    <div>
+        <input type="submit" value="Login" style="font-size: large" />
+    </div>
+</form>

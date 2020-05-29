@@ -1,0 +1,55 @@
+﻿@model IEnumerable<Lab1_IStaTP.Employees>
+
+@{
+    ViewData["Title"] = "Employees by departments";
+}
+
+<h1>Employees of department of @ViewBag.DepartmentNaming</h1>
+@if (User.IsInRole("admin"))
+{
+    <p>
+        @Html.ActionLink("Add new employee", "Create", new { departmentID = @ViewBag.DepartmentID })
+
+    </p>
+}
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DateOfBirth)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Department)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DateOfBirth)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Department.DepartmentNaming)
+                    </td>
+                    <td>
+                        @if (User.IsInRole("admin"))
+                        {
+                            <a asp-action="Edit" asp-route-id="@item.EmployeeId">Edit</a>
+                            <a asp-action="Delete" asp-route-id="@item.EmployeeId">Delete</a>
+                        }
+                            <a asp-action="Details" asp-route-id="@item.EmployeeId">Details</a>
+                        </td>
+                </tr>
+            }
+        </tbody>
+    </table>

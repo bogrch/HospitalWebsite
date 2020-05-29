@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Lab1_IStaTP.Patients>
+
+@{
+    ViewData["Title"] = "Patient";
+}
+
+<h1>Patient</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Psurname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PdateOfBirth)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Paddress)
+            </th>
+            
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Psurname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Pname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PdateOfBirth)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Paddress)
+                </td>
+                
+                <td>
+                    
+                    <a asp-action="Details" asp-route-id="@item.PatientId">Details</a> |
+                    
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

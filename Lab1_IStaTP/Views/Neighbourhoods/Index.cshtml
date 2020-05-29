@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Lab1_IStaTP.Neighbourhoods>
+
+@{
+    ViewData["Title"] = "Neighbourhoods";
+}
+
+<h1>Neighbourhoods</h1>
+@if (User.IsInRole("admin"))
+{
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.NeighbourhoodNaming)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NeighbourhoodNaming)
+                    </td>
+                    <td>
+                        @if (User.IsInRole("admin"))
+                        {
+                            <a asp-action="Edit" asp-route-id="@item.NeighbourhoodId">Edit</a>
+                        } 
+                        <a asp-action="Details" asp-route-id="@item.NeighbourhoodId">Details</a>
+                        @if (User.IsInRole("admin"))
+                        {
+                            <a asp-action="Delete" asp-route-id="@item.NeighbourhoodId">Delete</a>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>

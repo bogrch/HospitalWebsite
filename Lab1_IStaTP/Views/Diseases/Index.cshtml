@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Lab1_IStaTP.Diseases>
+
+@{
+    ViewData["Title"] = "Diseases by category";
+}
+
+<h1>Diseases by category @ViewBag.CategoryNaming</h1>
+@if (User.IsInRole("admin"))
+{
+    <p>
+        @Html.ActionLink("Add new disease", "Create", new { categoryID = @ViewBag.CategoryID })
+    </p>
+}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.DiseaseNaming)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Category)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DiseaseNaming)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Category.CategoryNaming)
+                    </td>
+                    <td>
+                        @if (User.IsInRole("admin"))
+                        { 
+                            <a asp-action="Delete" asp-route-id="@item.DiseaseId">Delete</a>
+                            <a asp-action="Edit" asp-route-id="@item.DiseaseId">Edit</a>
+                        }
+                        <a asp-action="Details" asp-route-id="@item.DiseaseId">Details</a>
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>

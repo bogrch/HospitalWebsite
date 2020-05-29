@@ -1,0 +1,52 @@
+﻿@model Lab1_IStaTP.Patients
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Patients</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Psurname" class="control-label"></label>
+                <input asp-for="Psurname" class="form-control" />
+                <span asp-validation-for="Psurname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Pname" class="control-label"></label>
+                <input asp-for="Pname" class="form-control" />
+                <span asp-validation-for="Pname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PdateOfBirth" class="control-label"></label>
+                <input asp-for="PdateOfBirth" class="form-control" />
+                <span asp-validation-for="PdateOfBirth" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Pneighbourhood" class="control-label"></label>
+                <select asp-for="Pneighbourhood" class ="form-control" asp-items="ViewBag.Pneighbourhood"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Paddress" class="control-label"></label>
+                <input asp-for="Paddress" class="form-control" />
+                <span asp-validation-for="Paddress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

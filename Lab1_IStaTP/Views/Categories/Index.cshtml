@@ -1,0 +1,73 @@
+﻿@model IEnumerable<Lab1_IStaTP.Categories>
+
+@{
+    ViewData["Title"] = "Disease Categories";
+}
+
+<h1>Disease Categories</h1>
+@if (User.IsInRole("admin"))
+{
+    <div>
+        <table>
+
+            <tr>
+                <td>
+                    <h2>Choose excel file to upload</h2>
+                    @using (Html.BeginForm("Import", "Categories", FormMethod.Post, new { enctype = "multipart/form-data", id = "frm-excel" }))
+                    {
+                        <div>
+
+                            <input type="file" name="fileExcel" id="fileExcel" />
+                            <div>
+
+                            </div>
+                            <div>
+                                <input type="submit" value="Upload" />
+                            </div>
+                        </div>
+                    }
+                </td>
+            </tr>
+        </table>
+
+
+    </div>
+
+    <div>
+        <h3>Download info in excel file</h3>
+        <a asp-action="Export">Download</a>
+    </div>
+
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.CategoryNaming)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CategoryNaming)
+                    </td>
+                    <td>
+                        @if (User.IsInRole("admin"))
+                        {
+                            <a asp-action="Edit" asp-route-id="@item.CategoryId">Edit</a>
+                            <a asp-action="Delete" asp-route-id="@item.CategoryId">Delete</a>
+                        }
+                            <a asp-action="Details" asp-route-id="@item.CategoryId">Details</a>
+
+                        </td>
+                </tr>
+            }
+        </tbody>
+    </table>

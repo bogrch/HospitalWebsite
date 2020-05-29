@@ -1,0 +1,28 @@
+﻿@model Lab1_IStaTP.ViewModels.RegisterViewModel
+<h2>Register a new user</h2>
+<form method="post" asp-controller="Account" asp-action="Register">
+    <div asp-validation-summary="ModelOnly"></div>
+    <div>
+        <label asp-for="Email" style="font-size: large"></label><br />
+        <input asp-for="Email" style="font-size: large" />
+        <span asp-validation-for="Email"></span>
+    </div>
+    <div>
+        <label asp-for="Year" style="font-size: large">Year of birth</label><br />
+        <input asp-for="Year" style="font-size: large" />
+        <span asp-validation-for="Year"></span>
+    </div>
+    <div>
+        <label asp-for="Password" style="font-size: large">Password</label><br />
+        <input asp-for="Password" style="font-size: large" />
+        <span asp-validation-for="Password"></span>
+    </div>
+    <div>
+        <label asp-for="PasswordConfirm" style="font-size: large"> </label><br />
+        <input asp-for="PasswordConfirm" style="font-size: large"/>
+        <span asp-validation-for="PasswordConfirm"></span>
+    </div>
+    <div>
+        <input type="submit" value="Registation" style="font-size: large" />
+    </div>
+</form>
